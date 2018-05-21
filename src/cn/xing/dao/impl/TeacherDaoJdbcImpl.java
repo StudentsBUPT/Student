@@ -3,6 +3,7 @@ package cn.xing.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -235,6 +236,45 @@ public class TeacherDaoJdbcImpl implements TeacherDao {
 		}
 		
 	
+	}
+
+	@Override
+	public List selectAllteacher() {
+		// TODO Auto-generated method stub
+		
+		Connection conn=null;
+		Statement st=null;
+		
+		ResultSet rs=null;
+		JdbcUtils jdbc =new JdbcUtils();
+				try {
+					conn = jdbc.getConection();
+					String  sql="select * from student_teacher";
+					st= conn.createStatement();
+					
+					rs= st.executeQuery(sql);
+					List list = new ArrayList();
+					while(rs.next()){
+                		Teacher user = new Teacher();
+						user.setTeacherid(rs.getString("teacherid"));
+						System.out.println(rs.getString("teacherid"));
+						
+						user.setTeachername(rs.getString("teachername"));
+						user.setTeacherfrom(rs.getString("teacherfrom"));
+						user.setTeachersex(rs.getString("teachersex"));
+						user.setTeacherphone(rs.getString("teacherphone"));
+						
+						list.add(user);
+                	}
+					return list;
+					
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+					throw new DaoException(e);
+				}finally {
+					jdbc.releace(conn, st, rs);
+				}
 	}
 
 }

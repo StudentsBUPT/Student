@@ -300,23 +300,24 @@
                                 </thead>
                                       <% 
                                     	BusinessServiceImpl service =new BusinessServiceImpl();
-                                    	List allStudent= service.finAllstudent();
-                                    	request.setAttribute("allStudent", allStudent);  
+                                    	List allTeacher= service.finAllteacher();
+                                    	request.setAttribute("allTeacher", allTeacher);  
                                   
                                      %>
                                 <tbody>
                                 
-                                  <c:forEach items="${allStudent}" var="item" varStatus="status">  
+                                  <c:forEach items="${allTeacher}" var="item" varStatus="status">  
 								  <tr>
                                    
                                         <td class="text-center">${status.index+1}</td>
-                                        <td class="font-w600">${item.studentid }</td>
-                                        <td class="font-w600">${item.studentname }</td>
-                                        <td class="hidden-xs">${item.studentclass}</td>
-                                        <td class="hidden-xs">${item.studentyear}</td>
+                                        <td class="font-w600">${item.teacherid }</td>
+                                        <td class="font-w600">${item.teachername }</td>
+                                        <td class="hidden-xs">${item.teacherfrom}</td>
                                         <td class="hidden-xs">
-                                            <span class="label label-success">${item.studentsex}</span>
+                                            <span class="label label-success">${item.teachersex}</span>
                                         </td>
+                                        
+                                        <td class="hidden-xs">${item.teacherphone}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="fa fa-pencil"></i></button>

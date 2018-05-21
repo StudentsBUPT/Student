@@ -68,6 +68,12 @@ public class BusinessServiceImpl {
 		return student.selectAllstudent();
 		
 	} 
+	public List finAllteacher(){
+		//password = ServiceUtils.md5(password);
+		
+		return teacher.selectAllteacher();
+		
+	}
 	//Teacher
 	public Teacher teacherlogin(String username,String password){
 		//password = ServiceUtils.md5(password);
