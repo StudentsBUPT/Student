@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.xing.service.impl.BusinessServiceImpl;
 
-public class Addclass extends HttpServlet {
+public class AddGrade extends HttpServlet {
 
 	/**
 		 * Constructor of the object.
 		 */
-	public Addclass() {
+	public AddGrade() {
 		super();
 	}
 
@@ -31,19 +31,21 @@ public class Addclass extends HttpServlet {
 		 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("sfs");
+		System.out.println("ere");
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
-		String classid = request.getParameter("classid");
+		String studentid = request.getParameter("studentid");
+		System.out.println(studentid);
 	
 		String classname=request.getParameter("classname");
-		String classschool = request.getParameter("classs");
-		String classmust=request.getParameter("classmust");
+		System.out.println(classname);
+		String grade=request.getParameter("grade");
+		System.out.println(grade);
 		
 		BusinessServiceImpl server =new BusinessServiceImpl();
-		boolean ac=server.Addclass(classid,classname,classschool,classmust);
+		boolean ac=server.AddGrade(studentid,classname,grade);
 		String mes=null;
-		System.out.println(classid+classname+classschool+classmust);
+		System.out.println(studentid+classname+grade);
 		if (ac) {
 			mes="³É¹¦";
 		} else {
@@ -64,7 +66,7 @@ public class Addclass extends HttpServlet {
 		 * @throws IOException if an error occurred
 		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println("jjjjere");
 		doGet(request, response);
 	}
 

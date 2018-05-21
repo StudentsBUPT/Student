@@ -147,7 +147,7 @@
                                     
                                 </li>
                                 <li>
-                                    <a class="nav-submenu" data-toggle="nav-submenu" href="addchengji.jsp"><i class="si si-magic-wand"></i><span class="sidebar-mini-hide">添加成绩</span></a>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="addgrade.jsp"><i class="si si-magic-wand"></i><span class="sidebar-mini-hide">添加成绩</span></a>
                                     
                                 </li>
                                 

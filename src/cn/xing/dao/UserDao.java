@@ -21,6 +21,7 @@ public interface UserDao {
 				String phone);
 		boolean addStudent(String studentid, String password, String studentname, String dist, String gender,
 				String year);
+		boolean addGrade(String studentid, String classname, String grade);
 	
 
 }

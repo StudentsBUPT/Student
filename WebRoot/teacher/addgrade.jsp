@@ -146,7 +146,7 @@
                                     
                                 </li>
                                 <li class="open">
-                                    <a class="nav-submenu" data-toggle="nav-submenu" href="addaction.jsp"><i class="si si-magic-wand"></i><span class="sidebar-mini-hide">添加成绩</span></a>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="addgrade.jsp"><i class="si si-magic-wand"></i><span class="sidebar-mini-hide">添加成绩</span></a>
                                     
                                 </li>
                                 
@@ -259,7 +259,7 @@
                             
                                 
                                 
-                                    <form class="form-horizontal push-12-t" action="${pageContext.request.contextPath}/Addclass" method="post" >
+                                    <form class="form-horizontal push-12-t" action="${pageContext.request.contextPath}/AddGrade" method="post" >
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <div class="form-material form-material-info floating">
@@ -279,7 +279,7 @@
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <div class="form-material form-material-info floating">
-                                                    <input class="form-control" type="text" id="chengji" name="chengji">
+                                                    <input class="form-control" type="text" id="grade" name="grade">
                                                     <label for="material-name">成绩</label>
                                                 </div>
                                             </div>

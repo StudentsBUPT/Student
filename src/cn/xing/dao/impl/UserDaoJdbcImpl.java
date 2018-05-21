@@ -260,7 +260,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	public boolean addStudent(String studentid, String password, String studentname, String dist, String gender,
 			String year) {
 		// TODO Auto-generated method stub
-Connection conn=null;
+        Connection conn=null;
 		
 		PreparedStatement st=null;
 		ResultSet rs=null;
@@ -283,6 +283,43 @@ Connection conn=null;
 			
 			int ac = st.executeUpdate();
 			System.out.println(ac);
+			
+			if (ac==1) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new DaoException(e);
+		}finally {
+			jdbc.releace(conn, st, rs);
+		}
+	}
+
+	@Override
+	public boolean addGrade(String studentid, String classname, String grade) {
+		// TODO Auto-generated method stub
+        Connection conn=null;
+		
+		PreparedStatement st=null;
+		ResultSet rs=null;
+		JdbcUtils jdbc =new JdbcUtils();
+		try {
+			conn = jdbc.getConection();
+			if(conn==null){
+				System.out.println("none");
+			}
+			String  sql="insert student_book (studentid, bookname, chengji) values(?,?,?)";
+			st= conn.prepareStatement(sql);
+			st.setString(1, studentid);
+			st.setString(2, classname);
+			st.setString(3, grade);
+			
+			
+			int ac = st.executeUpdate();
+			System.out.println(grade);
 			
 			if (ac==1) {
 				return true;
