@@ -8,11 +8,28 @@ public class Tstudent {
 	private String studentclass;
 	private String studentyear;
 	private String studentname;
+	private String bookhouse;
+	private String classmust;
+	private String classs;
 	
 	
 	private String teacherid;
 	private String chengji;
 
+	public String getBookhouse() {
+		return bookhouse;
+	}
+
+	public void setBookhouse(String bookhouse) {
+		this.bookhouse = bookhouse;
+	}
+	public String getClassmust() {
+		return classmust;
+	}
+
+	public void setClassmust(String classmust) {
+		this.classmust = classmust;
+	}
 
 	public String getChengji() {
 		return chengji;
@@ -21,6 +38,14 @@ public class Tstudent {
 
 	public void setChengji(String chengji) {
 		this.chengji = chengji;
+	}
+	
+	public String getClasss() {
+		return classs;
+	}
+
+	public void setClasss(String classs) {
+		this.classs = classs;
 	}
 
 

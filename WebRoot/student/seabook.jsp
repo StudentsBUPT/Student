@@ -272,7 +272,7 @@
                                         <td class="font-w600">${item.teacherid }</td>
                                         <td class="hidden-xs">${item.studentclass}</td>
                                         
-                                        <td class="text-center">
+                                        <td class="font-w600">
                                            ${item.chengji}
                                         </td>
                                     </c:forEach>

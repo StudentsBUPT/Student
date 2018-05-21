@@ -1,4 +1,6 @@
 <%@page import="cn.xing.service.impl.BusinessServiceImpl"%>
+<%@page import="cn.xing.domain.Student"%>
+<%@page import="cn.xing.domain.Teacher"%>
 <%@page import="cn.xing.domain.User"%>
 <%@page import="cn.xing.utils.JdbcUtils"%>
 <%@page import="java.sql.ResultSet"%>
@@ -254,10 +256,25 @@
                                     </tr>
 
                                 </thead>
-                                
+                                <% 
+                                		Student student=(Student)request.getSession().getAttribute("student");
+                                    	BusinessServiceImpl book =new BusinessServiceImpl();
+                                    	List stuAll=book.findclass(student.getStudentid());
+                                    	request.setAttribute("stuAll", stuAll);  
+                                  
+                                     %>
                                 <tbody>
-                                 
+                                        <c:forEach items="${stuAll}" var="item" varStatus="status"> 
 								  <tr>
+                                        <td class="text-center">${status.index+1 }</td>
+                                        <td class="font-w600">${item.bookname}</td>
+                                        <td class="font-w600">${item.classs}</td>
+                                        <td class="font-w600">${item.bookhouse}</td>
+                                        <td class="hidden-xs">${item.classmust}</td>
+                                        
+                                    </c:forEach>
+                                 
+								  <!-- <tr>
                                    
                                         <td class="text-center">1</td>
                                         <td class="font-w600">离散数学</td>
@@ -265,10 +282,10 @@
                                         <td class="hidden-xs">6#406</td>
                                         <td class="hidden-xs">
                                            private
-                                        </td>
+                                        </td>  -->
                                         
                                         
-                                    </tr> 
+                                    </tr>
 								 
                                     
                                    <%-- <tr>

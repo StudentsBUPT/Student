@@ -167,7 +167,7 @@ public class TeacherDaoJdbcImpl implements TeacherDao {
 			if(conn==null){
 				System.out.println("meiyou");
 			}
-			String  sql="select a.bookname,a.chengji,b.studentclass,b.studentname,c.teachername from  student_book as a,student_stu as b,student_teacher as c,teacher_book as d where a.studentid=? and a.bookname=d.bookname and a.studentid=b.studentid and d.teacherid=c.teacherid";
+			String  sql="select a.bookname,a.chengji,b.studentclass,b.studentname,c.teachername,d.bookhouse,f.classmust,f.classs from  student_book as a,student_stu as b,student_teacher as c,teacher_book as d,student_class as f where a.studentid=? and a.bookname=d.bookname and d.bookname=f.classname and a.studentid=b.studentid and d.teacherid=c.teacherid";
 			st= conn.prepareStatement(sql);
 			st.setString(1, studentid);
 			rs= st.executeQuery();
@@ -178,8 +178,19 @@ public class TeacherDaoJdbcImpl implements TeacherDao {
 				
 				
 				user.setBookname(rs.getString("bookname"));
+				System.out.println(rs.getString("bookname"));
 				user.setStudentname(rs.getString("studentname"));
+				System.out.println(rs.getString("studentname"));
 				user.setStudentclass(rs.getString("studentclass"));
+				user.setClasss(rs.getString("classs"));
+				System.out.println(rs.getString("classs"));
+				user.setBookhouse(rs.getString("bookhouse"));
+
+				System.out.println(rs.getString("bookhouse"));
+				
+				user.setClassmust(rs.getString("classmust"));
+				System.out.println(rs.getString("classmust"));
+				
 				
 				//student_teacher
 				
