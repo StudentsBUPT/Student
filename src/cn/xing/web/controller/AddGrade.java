@@ -30,7 +30,6 @@ public class AddGrade extends HttpServlet {
 		 * @throws IOException if an error occurred
 		 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		System.out.println("ere");
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
@@ -66,7 +65,6 @@ public class AddGrade extends HttpServlet {
 		 * @throws IOException if an error occurred
 		 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("jjjjere");
 		doGet(request, response);
 	}
 

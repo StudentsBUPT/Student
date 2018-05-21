@@ -258,7 +258,7 @@
                             
                                 
                                 
-                                    <form class="form-horizontal push-12-t" action="${pageContext.request.contextPath}/Addclass" method="post" >
+                                    <form class="form-horizontal push-12-t" action="${pageContext.request.contextPath}/AddGrade" method="post" >
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <div class="form-material form-material-info floating">

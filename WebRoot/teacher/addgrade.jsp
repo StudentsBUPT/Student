@@ -1,4 +1,6 @@
 <%@page import="cn.xing.service.impl.BusinessServiceImpl"%>
+<%@page import="cn.xing.domain.Student"%>
+<%@page import="cn.xing.domain.Teacher"%>
 <%@page import="cn.xing.domain.User"%>
 <%@page import="cn.xing.utils.JdbcUtils"%>
 <%@page import="java.sql.ResultSet"%>
@@ -289,7 +291,7 @@
                                        
                                         <div class="form-group">
                                             <div class="col-sm-9">
-                                                <button class="btn btn-sm btn-primary" type="button" onclick="ck()">Submit</button>
+                                                <button class="btn btn-sm btn-primary" type="submit">Submit</button>
                                             </div>
                                         </div>
                                     </form>
