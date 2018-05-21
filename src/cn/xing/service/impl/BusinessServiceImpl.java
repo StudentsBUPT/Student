@@ -87,11 +87,17 @@ public class BusinessServiceImpl {
 		return teacher.findbook(teacherid);
 		
 	} 
-	//查询学生
+
 	public List findstudent(String teacherid){
 		//password = ServiceUtils.md5(password);
 		
 		return teacher.findbook(teacherid);
+		
+	}
+	public List findBookStudent(String teacherid){
+		//password = ServiceUtils.md5(password);
+		
+		return teacher.findBookStudent(teacherid);
 		
 	}
 	public Student stulogin(String username,String password){

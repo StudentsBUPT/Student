@@ -1,3 +1,4 @@
+<%@page import="cn.xing.domain.Teacher"%>
 <%@page import="cn.xing.service.impl.BusinessServiceImpl"%>
 <%@page import="cn.xing.domain.User"%>
 <%@page import="cn.xing.utils.JdbcUtils"%>
@@ -255,10 +256,31 @@
                                     </tr>
 
                                 </thead>
-                                
+                                 <% 
+                                		Teacher teacher=(Teacher)request.getSession().getAttribute("teacher");
+                                    	BusinessServiceImpl book =new BusinessServiceImpl();
+                                    	List bookAll=book.findBook(teacher.getTeacherid());
+                                    	request.setAttribute("bookAll", bookAll);  
+                                  
+                                     %>
                                 <tbody>
-                                 
+                                
+                                <c:forEach items="${bookAll}" var="item" varStatus="status"> 
 								  <tr>
+                                   
+                                        <td class="text-center">${status.index+1 }</td>
+                                        <td class="font-w600">${item.bookname }</td>
+                                        <td class="font-w600">${item.bookhouse }</td>
+                                        <td class="font-w600">${item.booktype }</td> 
+                                        <td >
+                                            <div class="btn-group">
+                                              ${item.classs }
+                                            </div>
+                                        </td>   
+                                    </tr> 
+                                    </c:forEach>
+                                 
+<!-- 								  <tr>
                                    
                                         <td class="text-center">1</td>
                                         <td class="font-w600">离散数学</td>
@@ -269,7 +291,7 @@
                                         </td>
                                         
                                         
-                                    </tr> 
+                                    </tr> --> 
 								 
                                     
                                    <%-- <tr>

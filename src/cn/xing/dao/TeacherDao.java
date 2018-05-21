@@ -23,6 +23,8 @@ public interface TeacherDao {
 	List findClass(String studentid);
 
 	List selectAllteacher();
+
+	List findBookStudent(String teacherid);
 	
 
 }

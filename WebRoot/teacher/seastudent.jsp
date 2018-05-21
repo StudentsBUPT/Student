@@ -262,30 +262,37 @@
                                 <% 
                                 		Teacher teacher=(Teacher)request.getSession().getAttribute("teacher");
                                     	BusinessServiceImpl book =new BusinessServiceImpl();
-                                    	List bookAll=book.findBook(teacher.getTeacherid());
-                                    	request.setAttribute("bookAll", bookAll);  
+                                    	List studentAll=book.findBookStudent(teacher.getTeacherid());
+                                    	request.setAttribute("studentAll", studentAll);  
                                   
                                      %>
                                 <tbody>
-                                 <%--<c:forEach items="${bookAll}" var="item" varStatus="status"> 
+                                <c:forEach items="${studentAll}" var="item" varStatus="status"> 
 								  <tr>
                                    
                                         <td class="text-center">${status.index+1 }</td>
                                         <td class="font-w600">${item.bookname }</td>
-                                        <td class="font-w600">${item.bookhouse }</td>
-                                        <td class="font-w600">${item.booktype }</td> 
+                                        <td class="font-w600">${item.studentid }</td>
+                                        <td class="font-w600">${item.studentname }</td> 
                                         <td >
                                             <div class="btn-group">
-                                              ${item.classs }
+                                              ${item.studentclass }
                                             </div>
-                                        </td>   
+                                        </td>
+                                        <td class="font-w600">${item.studentyear}</td>   
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="fa fa-pencil"></i></button>
+                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </td> 
                                     </tr> 
-                                    </c:forEach>--%>
+                                    </c:forEach>
                                     
 								 
                                     
                                     
-                                    <tr>
+<!--                                     <tr>
                                         <td class="text-center">1</td>
                                         <td class="font-w600">Math</td>
                                         <td class="hidden-xs">123456</td>
@@ -300,7 +307,7 @@
                                                 <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="fa fa-times"></i></button>
                                             </div>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                     <%--<tr>
                                         <td class="text-center">4</td>
                                         <td class="font-w600">admin</td>

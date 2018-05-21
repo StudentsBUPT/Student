@@ -277,4 +277,53 @@ public class TeacherDaoJdbcImpl implements TeacherDao {
 				}
 	}
 
+	@Override
+	public List findBookStudent(String teacherid) {
+		// TODO Auto-generated method stub
+		
+		Connection conn=null;
+		PreparedStatement st=null;
+		ResultSet rs=null;
+		JdbcUtils jdbc =new JdbcUtils();
+		try {
+			conn = jdbc.getConection();
+			if(conn==null){
+				System.out.println("meiyou");
+			}
+			String  sql="select a.bookname,a.chengji,b.studentclass,b.studentid,b.studentyear,b.studentname,c.teachername from  student_book as a,student_stu as b,student_teacher as c,teacher_book as d where c.teacherid=? and a.bookname=d.bookname and a.studentid=b.studentid and d.teacherid=c.teacherid";
+			st= conn.prepareStatement(sql);
+			st.setString(1, teacherid);
+			rs= st.executeQuery();
+			List list = new ArrayList();
+			while(rs.next()) {
+				Tstudent user = new Tstudent();
+
+				user.setBookname(rs.getString("bookname"));
+				user.setStudentname(rs.getString("studentname"));
+				user.setStudentclass(rs.getString("studentclass"));
+				user.setStudentid(rs.getString("studentid"));
+				user.setStudentyear(rs.getString("studentyear"));
+				//student_teacher
+				
+				
+				user.setChengji(rs.getString("chengji"));
+				//student_book
+				user.setTeacherid(rs.getString("teachername"));
+				list.add(user);
+				
+				
+				
+			}
+			
+			return list;
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new DaoException(e);
+		}finally {
+			jdbc.releace(conn, st, rs);
+		}
+	}
+
 }
