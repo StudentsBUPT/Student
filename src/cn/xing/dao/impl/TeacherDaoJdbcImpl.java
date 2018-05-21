@@ -303,12 +303,10 @@ public class TeacherDaoJdbcImpl implements TeacherDao {
 				user.setStudentclass(rs.getString("studentclass"));
 				user.setStudentid(rs.getString("studentid"));
 				user.setStudentyear(rs.getString("studentyear"));
-				//student_teacher
 				
-				
-				user.setChengji(rs.getString("chengji"));
+				/*user.setChengji(rs.getString("chengji"));*/
 				//student_book
-				user.setTeacherid(rs.getString("teachername"));
+				/*user.setTeacherid(rs.getString("teachername"));*/
 				list.add(user);
 				
 				
