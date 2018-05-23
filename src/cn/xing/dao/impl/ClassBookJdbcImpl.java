@@ -64,6 +64,7 @@ public class ClassBookJdbcImpl implements ClassBook {
 	@Override
 	public List selectAllclassStu(String studentid) {
 		// TODO Auto-generated method stub
+		System.out.println("selectAllclassStu");
 		Connection conn=null;
 		PreparedStatement st=null;
 		
@@ -71,7 +72,7 @@ public class ClassBookJdbcImpl implements ClassBook {
 		JdbcUtils jdbc =new JdbcUtils();
 				try {
 					conn = jdbc.getConection();
-					String sql = "select a.teachername, b.id, b.classid, b.classname, b.classmust,b.classs, c.bookhouse from student_teacher as a,student_class as b, teacher_book as c, student_book as e where a.teacherid=c.teacherid and b.classname=c.bookname and e.studentid!=?";
+					String sql = "select DISTINCT b.classid, a.teachername, b.id, b.classname, b.classmust,b.classs, c.bookhouse from student_teacher as a,student_class as b, teacher_book as c, student_book as e where b.classname not in (select bookname from student_book where studentid = ?) and a.teacherid=c.teacherid and b.classname=c.bookname";
 					String  sql2="select * from student_class";
 					st= conn.prepareStatement(sql);
 					st.setString(1, studentid);

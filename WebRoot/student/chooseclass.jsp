@@ -263,8 +263,9 @@
 
                                 </thead>
                                 <% 
+                                        Student student=(Student)request.getSession().getAttribute("student");
 		                                BusinessServiceImpl service =new BusinessServiceImpl();
-		                            	List userAllclass= service.finAllclassStu();
+		                            	List userAllclass= service.finAllclassStu(student.getStudentid());
 		                            	request.setAttribute("userAllclass", userAllclass);  
                                   
                                      %>
@@ -284,8 +285,7 @@
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client" onclick="edit()"><i class="fa fa-pencil"></i></button>
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client" onclick=""><i class="fa fa-times"></i></button>
+                                                <button class="btn btn-xs btn-default" type="button" title="选课" onclick="choose()">选课</button>
                                             </div>
                                         </td>
                                     </c:forEach>
