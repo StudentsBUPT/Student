@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.xing.service.impl.BusinessServiceImpl;
 
-public class Addclass extends HttpServlet {
+public class AddStuClass extends HttpServlet {
 
 	/**
 		 * Constructor of the object.
 		 */
-	public Addclass() {
+	public AddStuClass() {
 		super();
 	}
 
@@ -31,30 +31,24 @@ public class Addclass extends HttpServlet {
 		 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("sfs");
+		System.out.println("AddStuClass");
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
 		String classid = request.getParameter("classid");
 	
 		String classname=request.getParameter("classname");
-		String classschool = request.getParameter("classs");
-		String classmust=request.getParameter("classmust");
-		String teacherid=request.getParameter("teacherid");
-		String classhouse=request.getParameter("classhouse");
-		String classtime=request.getParameter("classtime");
-		
+		String studentid=request.getParameter("studentid");
 		BusinessServiceImpl server =new BusinessServiceImpl();
-		boolean ac=server.Addclass(classid,classname,classschool,classmust,teacherid,classhouse,classtime);
+		boolean ac=server.AddStuClass(classid,classname,studentid);
 		String mes=null;
-		System.out.println(classid+classname+classschool+classmust);
+		System.out.println(classid+classname+studentid);
 		if (ac) {
-			mes="³É¹¦";
+			mes="success";
 		} else {
 			mes="";
 		}
 		request.setAttribute("message", mes);
-		//request.getRequestDispatcher("/message.jsp").forward(request, response);
-		request.getRequestDispatcher("/admin/addmanage.jsp").forward(request, response);;
+		request.getRequestDispatcher("/message.jsp");
 	}
 
 	/**

@@ -348,6 +348,43 @@ public class UserDaoJdbcImpl implements UserDao {
 			jdbc.releace(conn, st, rs);
 		}
 	}
+
+	@Override
+	public boolean addStuClass(String classid, String classname, String studentid) {
+        Connection conn=null;
+		
+		PreparedStatement st=null;
+		ResultSet rs=null;
+		JdbcUtils jdbc =new JdbcUtils();
+		try {
+			conn = jdbc.getConection();
+			if(conn==null){
+				System.out.println("none");
+			}
+			String  sql="insert student_book (studentid, bookname, chengji) values(?,?,?)";
+			st= conn.prepareStatement(sql);
+			st.setString(1, studentid);
+			st.setString(2, classname);
+			st.setString(3, "");
+			
+			
+			int ac = st.executeUpdate();
+			
+			System.out.println(ac);
+			
+			if (ac==1) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new DaoException(e);
+		}finally {
+			jdbc.releace(conn, st, rs);
+		}
+	}
 	
 	
 

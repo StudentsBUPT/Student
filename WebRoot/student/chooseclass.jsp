@@ -266,14 +266,14 @@
                                         Student student=(Student)request.getSession().getAttribute("student");
 		                                BusinessServiceImpl service =new BusinessServiceImpl();
 		                            	List userAllclass= service.finAllclassStu(student.getStudentid());
-		                            	request.setAttribute("userAllclass", userAllclass);  
-                                  
+		                            	request.setAttribute("userAllclass", userAllclass); 
+		                            	request.setAttribute("stuid",student.getStudentid());                                    
                                      %>
                                 <tbody>
                                 <c:forEach items="${userAllclass}" var="item" varStatus="status"> 
 								  <tr>
                                         <td class="text-center">${status.index+1}</td>
-                                        <td class="font-w600">${item.classid }</td>
+                                        <td class="font-w600">${item.classid}</td>
                                         <td class="font-w600">${item.classname }</td>
                                         <td class="hidden-xs">${item.classs }</td>
                                         <td class="hidden-xs">${item.teachername }</td>
@@ -285,7 +285,7 @@
                                         </td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button class="btn btn-xs btn-default" type="button" title="选课" onclick="choose()">选课</button>
+                                                <button class="btn btn-xs btn-default" data-path = "${pageContext.request.contextPath}" data-classid = "${item.classid}" data-classname = "${item.classname}" data-stuid = "${stuid}" id = "choose" type="button" title="选课" onclick="choose(this)">选课</button>
                                             </div>
                                         </td>
                                     </c:forEach>
@@ -472,6 +472,27 @@
                 // Init page helpers (Slick Slider plugin)
                 App.initHelpers('slick');
             });
+        </script>
+        <script>
+            function choose(e){
+            	var classid, classname, studentid;
+            	classname = e.getAttribute("data-classname");
+                classid = e.getAttribute("data-classid");
+                studentid = e.getAttribute("data-stuid");
+                path = e.getAttribute("data-path");
+                
+                $.ajax({
+                	  type: 'POST',
+                	  url: path+"/AddStuClass?classname="+classname+"&classid="+classid+"&studentid="+studentid,
+                	  dataType: "json",
+                	  success: function(res) {
+                          window.location.href="chooseclass.jsp";
+                      },
+                      error:function(res){
+                    	  window.location.href="chooseclass.jsp";
+                      }
+                	});
+            }
         </script>
     </body>
 
