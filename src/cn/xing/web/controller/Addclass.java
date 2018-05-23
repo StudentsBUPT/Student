@@ -53,8 +53,7 @@ public class Addclass extends HttpServlet {
 			mes="";
 		}
 		request.setAttribute("message", mes);
-		//request.getRequestDispatcher("/message.jsp").forward(request, response);
-		request.getRequestDispatcher("/admin/addmanage.jsp").forward(request, response);;
+		response.sendRedirect("/student/admin/addmanage.jsp");
 	}
 
 	/**

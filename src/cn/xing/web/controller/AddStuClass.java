@@ -48,7 +48,7 @@ public class AddStuClass extends HttpServlet {
 			mes="";
 		}
 		request.setAttribute("message", mes);
-		request.getRequestDispatcher("/message.jsp");
+		//request.getRequestDispatcher("/admin/addmanage.jsp").forward(request, response);
 	}
 
 	/**

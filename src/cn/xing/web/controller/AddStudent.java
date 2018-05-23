@@ -51,7 +51,8 @@ public class AddStudent extends HttpServlet {
 			mes="";
 		}
 		request.setAttribute("message", mes);
-		request.getRequestDispatcher("/message.jsp").forward(request, response);
+		//request.getRequestDispatcher("/message.jsp").forward(request, response);
+		response.sendRedirect("/student/admin/student.jsp");
 	}
 
 	/**

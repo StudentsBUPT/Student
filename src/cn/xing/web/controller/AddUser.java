@@ -50,7 +50,8 @@ public class AddUser extends HttpServlet {
 			mes="";
 		}
 		request.setAttribute("message", "³É¹¦");
-		request.getRequestDispatcher("/message.jsp").forward(request, response);
+		//request.getRequestDispatcher("/message.jsp").forward(request, response);
+		response.sendRedirect("/student/admin/index.jsp");
 		
 	}
 

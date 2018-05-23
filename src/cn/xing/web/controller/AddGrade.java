@@ -51,7 +51,8 @@ public class AddGrade extends HttpServlet {
 			mes="";
 		}
 		request.setAttribute("message", mes);
-		request.getRequestDispatcher("/message.jsp").forward(request, response);
+		//request.getRequestDispatcher("/message.jsp").forward(request, response);
+		response.sendRedirect("/student/teacher/seastudent.jsp");
 	}
 
 	/**
