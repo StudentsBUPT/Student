@@ -315,7 +315,7 @@ public class TeacherDaoJdbcImpl implements TeacherDao {
 				user.setStudentid(rs.getString("studentid"));
 				user.setStudentyear(rs.getString("studentyear"));
 				
-				/*user.setChengji(rs.getString("chengji"));*/
+				user.setChengji(rs.getString("chengji"));
 				//student_book
 				/*user.setTeacherid(rs.getString("teachername"));*/
 				list.add(user);

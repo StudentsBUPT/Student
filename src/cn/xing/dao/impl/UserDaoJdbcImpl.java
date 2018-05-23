@@ -325,11 +325,11 @@ public class UserDaoJdbcImpl implements UserDao {
 			if(conn==null){
 				System.out.println("none");
 			}
-			String  sql="insert student_book (studentid, bookname, chengji) values(?,?,?)";
+			String  sql="update student_book set chengji = ? where studentid = ? and bookname = ?";
 			st= conn.prepareStatement(sql);
-			st.setString(1, studentid);
-			st.setString(2, classname);
-			st.setString(3, grade);
+			st.setString(1, grade);
+			st.setString(2, studentid);
+			st.setString(3, classname);
 			
 			
 			int ac = st.executeUpdate();

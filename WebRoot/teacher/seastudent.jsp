@@ -254,6 +254,7 @@
                                         <th class="hidden-xs">学生编号</th>
                                         <th class="hidden-xs">学生姓名</th>
                                         <th class="hidden-xs">学生班级</th>
+                                        <th class="hidden-xs">成绩</th>
                                         <th class="hidden-xs" style="width: 15%;">入学年月</th>
                                         <th class="text-center" style="width: 10%;">Actions</th>
                                       </tr>
@@ -274,6 +275,7 @@
                                         <td class="font-w600">${item.bookname }</td>
                                         <td class="font-w600">${item.studentid }</td>
                                         <td class="font-w600">${item.studentname }</td> 
+                                        <td class="font-w600">${item.chengji }</td> 
                                         <td >
                                             <div class="btn-group">
                                               ${item.studentclass }
