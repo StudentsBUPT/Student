@@ -264,7 +264,7 @@
                                 </thead>
                                 <% 
 		                                BusinessServiceImpl service =new BusinessServiceImpl();
-		                            	List userAllclass= service.finAllclass();
+		                            	List userAllclass= service.finAllclassStu();
 		                            	request.setAttribute("userAllclass", userAllclass);  
                                   
                                      %>

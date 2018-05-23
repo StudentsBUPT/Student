@@ -62,6 +62,13 @@ public class BusinessServiceImpl {
 		return classbook.selectAllclass();
 		
 	} 
+	
+	public List finAllclassStu(String studentid){
+		//password = ServiceUtils.md5(password);
+		
+		return classbook.selectAllclassStu(studentid);
+		
+	} 
 	public List finAllstudent(){
 		//password = ServiceUtils.md5(password);
 		
