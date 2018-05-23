@@ -23,6 +23,7 @@ public interface UserDao {
 				String year);
 		boolean addGrade(String studentid, String classname, String grade);
 		boolean addStuClass(String classid, String classname, String studentid);
+		boolean dropStuClass(String classid, String classname, String studentid);
 	
 
 }

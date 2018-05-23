@@ -68,6 +68,12 @@ public class BusinessServiceImpl {
 		
 		return classbook.selectAllclassStu(studentid);
 		
+	}
+	public List finAllclassStuDrop(String studentid){
+		//password = ServiceUtils.md5(password);
+		
+		return classbook.selectAllclassStuDrop(studentid);
+		
 	} 
 	public List finAllstudent(){
 		//password = ServiceUtils.md5(password);
@@ -139,6 +145,11 @@ public class BusinessServiceImpl {
 		// TODO Auto-generated method stub
 		System.out.println(classid+classname+studentid);
 		return dao.addStuClass(classid,classname,studentid);
+	}
+	public boolean DropStuClass(String classid, String classname, String studentid) {
+		// TODO Auto-generated method stub
+		System.out.println(classid+classname+studentid);
+		return dao.dropStuClass(classid,classname,studentid);
 	}
 
 }

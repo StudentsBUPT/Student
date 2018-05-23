@@ -1,6 +1,6 @@
-<%@page import="cn.xing.service.impl.BusinessServiceImpl"%>
 <%@page import="cn.xing.domain.Student"%>
 <%@page import="cn.xing.domain.Teacher"%>
+<%@page import="cn.xing.service.impl.BusinessServiceImpl"%>
 <%@page import="cn.xing.domain.User"%>
 <%@page import="cn.xing.utils.JdbcUtils"%>
 <%@page import="java.sql.ResultSet"%>
@@ -135,8 +135,8 @@
                                     <a class="active" href="index.jsp"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">首页</span></a>
                                 </li>
                                 <li class="nav-main-heading"><span class="sidebar-mini-hide">课程信息</span></li>
-                                <li>
-                                    <a class="nav-submenu" data-toggle="nav-submenu" href="seabook.jsp"><i class="si si-badge"></i><span class="sidebar-mini-hide">查看课程</span></a>
+                                <li class="open">
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="seabook.jsp"><i class="si si-badge"></i><span class="sidebar-mini-hide">查看课程信息</span></a>
                                     
                                 </li>
                                 
@@ -161,7 +161,6 @@
                                 
                                 
                                 
-                                
                                 <!-- <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-user"></i><span class="sidebar-mini-hide">修改管理员信息</span></a>
                                     
@@ -176,9 +175,9 @@
                             </button> -->
                             <!-- Themes functionality initialized in App() -> 登录人员名称 -->
                             <div class="btn-group pull-right">
-                                
-                                    <i class="si si-drop"><a href="${pageContext.request.contextPath}/RemoveSeesion">退出</a></i>
-                                
+                                <button class="btn btn-link text-gray dropdown-toggle" data-toggle="dropdown" type="button">
+                                    <i class="si si-drop"></i>
+                                </button>
                                 
                             </div>
                             <a class="h5 text-white" href="index.html">
@@ -233,8 +232,8 @@
                 <!-- Page Header -->
                 <div class="content bg-image overflow-hidden" style="background-image: url('assets/img/photos/photo12@2x.jpg');">
                     <div class="push-50-t push-15">
-                        <h1 class="h2 text-white animated zoomIn">首页</h1>
-                        <h2 class="h5 text-white-op animated zoomIn">Welcome 学生</h2>
+                        <h1 class="h2 text-white animated zoomIn">查看课程信息</h1>
+                        
                     </div>
                 </div>
                 <!-- END Page Header -->
@@ -244,12 +243,12 @@
                 <!-- Page Content -->
                 <div class="content">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-11">
                             <!-- Main Dashboard Chart -->
                             <!-- Dynamic Table Full -->
                     <div class="block">
                         <div class="block-header">
-                            <h3 class="block-title">今日课程预览表 <small>All</small></h3>
+                            <h3 class="block-title">退课预览表 <small>All</small></h3>
                         </div>
                         <div class="block-content">
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
@@ -257,74 +256,56 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center"></th>
-                                        <th>课程</th>
-                                        <th class="hidden-xs">所在学院</th>
-                                        <th class="hidden-xs">授课地点</th>
-                                        <th class="hidden-xs">类别</th>
-                                        
-                                    </tr>
+                                        <th >课程编号</th>
+                                        <th >课程名称</th>
+                                        <th >所属学院</th>
+                                        <th >授课老师</th>
+                                        <th >教学地点</th>
+                                        <th >课程类型</th>
+                                        <th >操作</th>
+                                      </tr>
 
                                 </thead>
                                 <% 
-                                		Student student=(Student)request.getSession().getAttribute("student");
-                                    	BusinessServiceImpl book =new BusinessServiceImpl();
-                                    	List stuAll=book.findclass(student.getStudentid());
-                                    	request.setAttribute("stuAll", stuAll);  
-                                  
+                                        Student student=(Student)request.getSession().getAttribute("student");
+		                                BusinessServiceImpl service =new BusinessServiceImpl();
+		                            	List userAllclass= service.finAllclassStuDrop(student.getStudentid());
+		                            	request.setAttribute("userAllclass", userAllclass); 
+		                            	request.setAttribute("stuid",student.getStudentid());                                    
                                      %>
                                 <tbody>
-                                        <c:forEach items="${stuAll}" var="item" varStatus="status"> 
+                                <c:forEach items="${userAllclass}" var="item" varStatus="status"> 
 								  <tr>
-                                        <td class="text-center">${status.index+1 }</td>
-                                        <td class="font-w600">${item.bookname}</td>
-                                        <td class="font-w600">${item.classs}</td>
-                                        <td class="font-w600">${item.bookhouse}</td>
-                                        <td class="hidden-xs">${item.classmust}</td>
-                                        
-                                    </c:forEach>
-                                 
-								  <!-- <tr>
-                                   
-                                        <td class="text-center">1</td>
-                                        <td class="font-w600">离散数学</td>
-                                        <td class="font-w600">物理学院</td>
-                                        <td class="hidden-xs">6#406</td>
+                                        <td class="text-center">${status.index+1}</td>
+                                        <td class="font-w600">${item.classid}</td>
+                                        <td class="font-w600">${item.classname }</td>
+                                        <td class="hidden-xs">${item.classs }</td>
+                                        <td class="hidden-xs">${item.teachername }</td>
+                                        <td class="hidden-xs">${item.classhouse }</td>
                                         <td class="hidden-xs">
-                                           private
-                                        </td>  -->
-                                        
-                                        
-                                    </tr>
+                                            <span class="label label-success">
+                                            	${item.classmust }
+                                            </span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button class="btn btn-xs btn-default" data-path = "${pageContext.request.contextPath}" data-classid = "${item.classid}" data-classname = "${item.classname}" data-stuid = "${stuid}" id = "drop" type="button" title="退课" onclick="drop(this)">退课</button>
+                                            </div>
+                                        </td>
+                                    </c:forEach>
+                                    
 								 
                                     
-                                   <%-- <tr>
-                                        <td class="text-center">2</td>
-                                        <td class="font-w600">sdut</td>
-                                        <td class="font-w600">武器云</td>
-                                        <td class="hidden-xs">970643573@qq.com</td>
-                                        <td class="hidden-xs">
-                                            <span class="label label-success">管理员</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="fa fa-pencil"></i></button>
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="fa fa-times"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">3</td>
-                                        <td class="font-w600">admin</td>
+                                    
+                                    <%--<tr>
+                                        <td class="text-center">1</td>
+                                        <td class="font-w600">Math</td>
+                                        <td class="font-w600">6#204</td>
                                         <td class="font-w600">李晓春</td>
-                                        <td class="hidden-xs">1174822726@qq.com</td>
-                                        <td class="hidden-xs">
-                                            <span class="label label-warning">学生</span>
-                                        </td>
+                                        <td class="hidden-xs">物理学院</td>
+                                        
                                         <td class="text-center">
-                                            <div class="btn-group">
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="fa fa-pencil"></i></button>
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="fa fa-times"></i></button>
-                                            </div>
+                                            100
                                         </td>
                                     </tr>
                                     <tr>
@@ -351,73 +332,7 @@
                     <!-- END Dynamic Table Full -->
                             <!-- END Main Dashboard Chart -->
                         </div>
-                        <div class="col-lg-4">
-                            <!-- 个人信息 -->
-                            <div class="block">
-                                <div class="block-header">
-                                    <ul class="block-options">
-                                        <li>
-                                            <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
-                                        </li>
-                                    </ul>
-                                    <h3 class="block-title">个人信息</h3>
-                                </div>
-                               <!--  <div class="block-content bg-gray-lighter">
-                                    <div class="row items-push">
-
-                                    </div>
-                                </div> -->
-                                <div class="block-content">
-                                    <div class="pull-t pull-r-l">
-                                        <!-- Slick slider (.js-slider class is initialized in App() -> uiHelperSlick()) -->
-                                        <!-- For more info and examples you can check out http://kenwheeler.github.io/slick/ -->
-                                        <div>
-                                                <table class="table remove-margin-b font-s13">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="font-w600">学号：</td>
-                                                            
-                                                            <td class="font-w600 text-success text-right" style="width: 70px;">${student.studentid }</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="font-w600">姓名：</td>
-                                                            
-                                                            <td class="font-w600 text-success text-right">${student.studentname }</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="font-w600">班级：</td>
-                                                            
-                                                            <td class="font-w600 text-success text-right">${student.studentclass }
-                                                            
-															</td>
-                                                        </tr>
-                                                        
-                                                        <tr>
-                                                            <td class="font-w600">入学年份：</td>
-                                                            
-                                                            <td class="font-w600 text-success text-right">${student.studentyear }</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="font-w600">性别：</td>
-                                                            
-                                                            <td class="font-w600 text-success text-right">${student.studentsex }</td>
-                                                        </tr>
-                                                        
-                                                        
-                                                       
-                                                        
-                                                        
-                                                        
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        <!-- END Slick slider -->
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 个人信息 -->
-                            <!-- END Latest Sales Widget -->
-                        </div>
+                        
                     </div>
                     
                 </div>
@@ -526,69 +441,12 @@
   <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="fa fa-times"></i></button>
   </div> --%>
 <script type="text/javascript">
-	var table;
+	
     
             /**
      *编辑方法
      **/
-    function edit(username,name,email,type) {
-        console.log(name);
-        editFlag = true;
-        $("#myModalLabel").text("修改");
-        $("#username").val(username).attr("disabled",true);
-        $("#name").val(name);
-        $("#email").val(email);
-        $("#type").val(type);
-        
-        $("#myModal").modal("show");
-    }
-    function ajax(obj) {
-        var url ="" ;
-        if(editFlag){
-            url = "edit.jsp";
-        }
-        $.ajax({
-            url:url ,
-            data: {
-                "name": obj.name,
-                "position": obj.position,
-                "salary": obj.salary,
-                "start_date": obj.start_date
-                
-            }, success: function (data) {
-                table.ajax.reload();
-                
-                
-                console.log("结果" + data);
-            }
-        });
-    }
-     /**
-     * 删除数据
-     * @param name
-     */
-    function del(username,name) {
-        $.ajax({
-            url: "del.jsp",
-            data: {
-            	"username":username,
-                "name": name
-            },
-            success: function (data) {
-                table.ajax.reload();
-                
-               
-            }
-            
-            
-            
-           
-        });
-        alert("删除成功！");
-        table.ajax.reload();
-        window.navigate("index.jsp"); 
-         
-    }
+    
         
 </script>
 
@@ -618,6 +476,27 @@
                 // Init page helpers (Slick Slider plugin)
                 App.initHelpers('slick');
             });
+        </script>
+        <script>
+            function drop(e){
+            	var classid, classname, studentid;
+            	classname = e.getAttribute("data-classname");
+                classid = e.getAttribute("data-classid");
+                studentid = e.getAttribute("data-stuid");
+                path = e.getAttribute("data-path");
+                
+                $.ajax({
+                	  type: 'POST',
+                	  url: path+"/DropStuClass?classname="+classname+"&classid="+classid+"&studentid="+studentid,
+                	  dataType: "json",
+                	  success: function(res) {
+                          window.location.href="dropclass.jsp";
+                      },
+                      error:function(res){
+                    	  window.location.href="dropclass.jsp";
+                      }
+                	});
+            }
         </script>
     </body>
 

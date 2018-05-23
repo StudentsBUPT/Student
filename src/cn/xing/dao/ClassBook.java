@@ -4,9 +4,10 @@ import java.util.List;
 
 public interface ClassBook {
 	
-	//查询课程
 			List selectAllclass();
 
 			List selectAllclassStu(String studentid);
+
+			List selectAllclassStuDrop(String studentid);
 	
 }

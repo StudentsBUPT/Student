@@ -147,6 +147,10 @@
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="chooseclass.jsp"><i class="si si-wrench"></i><span class="sidebar-mini-hide">选课</span></a>
                                     
                                 </li>
+                                <li>
+                                    <a class="nav-submenu" data-toggle="nav-submenu" href="dropclass.jsp"><i class="si si-wrench"></i><span class="sidebar-mini-hide">退课</span></a>
+                                    
+                                </li>
                                 <li class="open">
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="alterstudent.jsp"><i class="si si-wrench"></i><span class="sidebar-mini-hide">修改密码</span></a>
                                     

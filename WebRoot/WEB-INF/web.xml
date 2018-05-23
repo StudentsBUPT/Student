@@ -43,11 +43,17 @@
     <servlet-name>AddGrade</servlet-name>
     <servlet-class>cn.xing.web.controller.AddGrade</servlet-class>
   </servlet>
-      <servlet>
+  <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>AddStuClass</servlet-name>
     <servlet-class>cn.xing.web.controller.AddStuClass</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DropStuClass</servlet-name>
+    <servlet-class>cn.xing.web.controller.DropStuClass</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
@@ -107,6 +113,10 @@
   <servlet-mapping>
     <servlet-name>AddStuClass</servlet-name>
     <url-pattern>/AddStuClass</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>DropStuClass</servlet-name>
+    <url-pattern>/DropStuClass</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>TeacherServlet</servlet-name>

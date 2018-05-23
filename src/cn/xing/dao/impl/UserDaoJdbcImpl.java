@@ -385,6 +385,44 @@ public class UserDaoJdbcImpl implements UserDao {
 			jdbc.releace(conn, st, rs);
 		}
 	}
+
+	@Override
+	public boolean dropStuClass(String classid, String classname, String studentid) {
+		// TODO Auto-generated method stub
+Connection conn=null;
+		
+		PreparedStatement st=null;
+		ResultSet rs=null;
+		JdbcUtils jdbc =new JdbcUtils();
+		try {
+			conn = jdbc.getConection();
+			if(conn==null){
+				System.out.println("none");
+			}
+			String  sql="delete from student_book where studentid = ? and bookname = ? and chengji = ?";
+			st= conn.prepareStatement(sql);
+			st.setString(1, studentid);
+			st.setString(2, classname);
+			st.setString(3, "");
+			
+			
+			int ac = st.executeUpdate();
+			
+			System.out.println(ac);
+			
+			if (ac==1) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new DaoException(e);
+		}finally {
+			jdbc.releace(conn, st, rs);
+		}
+	}
 	
 	
 
