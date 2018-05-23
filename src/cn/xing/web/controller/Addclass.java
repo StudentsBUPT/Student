@@ -39,9 +39,12 @@ public class Addclass extends HttpServlet {
 		String classname=request.getParameter("classname");
 		String classschool = request.getParameter("classs");
 		String classmust=request.getParameter("classmust");
+		String teacherid=request.getParameter("teacherid");
+		String classhouse=request.getParameter("classhouse");
+		String classtime=request.getParameter("classtime");
 		
 		BusinessServiceImpl server =new BusinessServiceImpl();
-		boolean ac=server.Addclass(classid,classname,classschool,classmust);
+		boolean ac=server.Addclass(classid,classname,classschool,classmust,teacherid,classhouse,classtime);
 		String mes=null;
 		System.out.println(classid+classname+classschool+classmust);
 		if (ac) {

@@ -292,6 +292,8 @@
                                         <th>课程编号</th>
                                         <th class="hidden-xs">课程名称</th>
                                         <th class="hidden-xs">所属学院</th>
+                                        <th class="hidden-xs">教师名称</th>
+                                        <th class="hidden-xs">教学地点</th>
                                         <th class="hidden-xs" style="width: 15%;">课程类别</th>
                                         <th class="text-center" style="width: 10%;">Actions</th>
                                     </tr>
@@ -311,6 +313,8 @@
                                         <td class="font-w600">${item.classid }</td>
                                         <td class="font-w600">${item.classname }</td>
                                         <td class="hidden-xs">${item.classs }</td>
+                                        <td class="hidden-xs">${item.teachername }</td>
+                                        <td class="hidden-xs">${item.classhouse }</td>
                                         <td class="hidden-xs">
                                             <span class="label label-success">
                                             	${item.classmust }

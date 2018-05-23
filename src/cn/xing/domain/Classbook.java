@@ -6,6 +6,32 @@ public class Classbook {
 	private String classname;
 	private String classs;
 	private String classmust;
+	private String classhouse;
+	private String teachername;
+	private String classtime;
+	
+	public String getClasshouse() {
+		return classhouse;
+	}
+	public void setClasshouse(String classhouse) {
+		this.classhouse = classhouse;
+	}
+	
+	public String getTeachername() {
+		return teachername;
+	}
+	public void setTeachername(String teachername) {
+		this.teachername = teachername;
+	}
+	
+	public String getClasstime() {
+		return classtime;
+	}
+	public void setClasstime(String classtime) {
+		this.classtime = classtime;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}

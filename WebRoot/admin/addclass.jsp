@@ -333,6 +333,30 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="form-material form-material-info floating">
+                                                    <input class="form-control" type="text" id="material-phone" name="teacherid">
+                                                    <label for="material-phone">教师编号</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="form-material form-material-info floating">
+                                                    <input class="form-control" type="text" id="material-phone" name="classhouse">
+                                                    <label for="material-phone">教学地点</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="form-material form-material-info floating">
+                                                    <input class="form-control" type="text" id="material-phone" name="classtime">
+                                                    <label for="material-phone">教学时间</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                         
                                        
                                         <div class="form-group">

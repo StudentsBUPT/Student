@@ -25,7 +25,8 @@ public class ClassBookJdbcImpl implements ClassBook {
 		JdbcUtils jdbc =new JdbcUtils();
 				try {
 					conn = jdbc.getConection();
-					String  sql="select * from student_class";
+					String sql = "select a.teachername, b.id, b.classid, b.classname, b.classmust,b.classs, c.bookhouse from student_teacher as a,student_class as b, teacher_book as c where a.teacherid=c.teacherid and b.classname=c.bookname";
+					String  sql2="select * from student_class";
 					st= conn.createStatement();
 					
 					rs= st.executeQuery(sql);
@@ -34,10 +35,14 @@ public class ClassBookJdbcImpl implements ClassBook {
                 		Classbook user = new Classbook();
 						user.setId(rs.getInt("id"));
 						user.setClassid(rs.getString("classid"));
-						
+						System.out.println(rs.getString("classid"));
 						user.setClassname(rs.getString("classname"));
 						user.setClasss(rs.getString("classs"));
 						user.setClassmust(rs.getString("classmust"));
+						user.setClasshouse(rs.getString("bookhouse"));
+						System.out.println(rs.getString("bookhouse"));
+						user.setTeachername(rs.getString("teachername"));
+						System.out.println(rs.getString("teachername"));
 						
 						list.add(user);
                 	}
@@ -46,6 +51,7 @@ public class ClassBookJdbcImpl implements ClassBook {
 					
 				} catch (Exception e) {
 					// TODO: handle exception
+					System.out.println(e);
 					throw new DaoException(e);
 				}finally {
 					jdbc.releace(conn, st, rs);

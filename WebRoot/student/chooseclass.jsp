@@ -244,7 +244,7 @@
                             <!-- Dynamic Table Full -->
                     <div class="block">
                         <div class="block-header">
-                            <h3 class="block-title">课程预览表 <small>All</small></h3>
+                            <h3 class="block-title">选课预览表 <small>All</small></h3>
                         </div>
                         <div class="block-content">
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
@@ -252,32 +252,41 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center"></th>
-                                        <th >课程</th>
-                                        <th >学生姓名</th>
+                                        <th >课程编号</th>
+                                        <th >课程名称</th>
+                                        <th >所属学院</th>
                                         <th >授课老师</th>
-                                        <th >所属班级</th>
-                                        <th >成绩</th>
+                                        <th >教学地点</th>
+                                        <th >课程类型</th>
+                                        <th >操作</th>
                                       </tr>
 
                                 </thead>
                                 <% 
-                                		Student student=(Student)request.getSession().getAttribute("student");
-                                    	BusinessServiceImpl book =new BusinessServiceImpl();
-                                    	List stuAll=book.findclass(student.getStudentid());
-                                    	request.setAttribute("stuAll", stuAll);  
+		                                BusinessServiceImpl service =new BusinessServiceImpl();
+		                            	List userAllclass= service.finAllclass();
+		                            	request.setAttribute("userAllclass", userAllclass);  
                                   
                                      %>
                                 <tbody>
-                                <c:forEach items="${stuAll}" var="item" varStatus="status"> 
+                                <c:forEach items="${userAllclass}" var="item" varStatus="status"> 
 								  <tr>
-                                        <td class="text-center">${status.index+1 }</td>
-                                        <td class="font-w600">${item.bookname }</td>
-                                        <td class="font-w600">${item.studentname }</td>
-                                        <td class="font-w600">${item.teacherid }</td>
-                                        <td class="hidden-xs">${item.studentclass}</td>
-                                        
-                                        <td class="font-w600">
-                                           ${item.chengji}
+                                        <td class="text-center">${status.index+1}</td>
+                                        <td class="font-w600">${item.classid }</td>
+                                        <td class="font-w600">${item.classname }</td>
+                                        <td class="hidden-xs">${item.classs }</td>
+                                        <td class="hidden-xs">${item.teachername }</td>
+                                        <td class="hidden-xs">${item.classhouse }</td>
+                                        <td class="hidden-xs">
+                                            <span class="label label-success">
+                                            	${item.classmust }
+                                            </span>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client" onclick="edit()"><i class="fa fa-pencil"></i></button>
+                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client" onclick=""><i class="fa fa-times"></i></button>
+                                            </div>
                                         </td>
                                     </c:forEach>
                                     

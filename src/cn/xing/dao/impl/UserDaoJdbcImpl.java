@@ -174,12 +174,15 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 
 	@Override
-	public boolean addclass(String classid, String classname, String classs, String classmust) {
+	public boolean addclass(String classid, String classname, String classs, String classmust,String teacherid, String classhouse, String classtime) {
 		// TODO Auto-generated method stub
 		Connection conn=null;
 		
 		PreparedStatement st=null;
 		ResultSet rs=null;
+		
+		PreparedStatement st2=null;
+		ResultSet rs2=null;
 		JdbcUtils jdbc =new JdbcUtils();
 		try {
 			conn = jdbc.getConection();
@@ -195,10 +198,20 @@ public class UserDaoJdbcImpl implements UserDao {
 			
 			System.out.println(classid+classname+classs);
 			
-			int ac = st.executeUpdate();
-			System.out.println(ac);
+			String sql2 = "insert teacher_book (teacherid, bookname, bookhouse) values(?,?,?)";
+			st2= conn.prepareStatement(sql2);
+			st2.setString(1, teacherid);
+			st2.setString(2, classname);
+			st2.setString(3, classhouse);
+			//st2.setString(4, classtime); //时间先不处理
 			
-			if (ac==1) {
+			int ac = st.executeUpdate();
+			
+			int ac2 = st2.executeUpdate();
+			System.out.println(ac);
+			System.out.println(ac2);
+			
+			if (ac==1 && ac2 == 1) {
 				return true;
 			} else {
 				return false;
@@ -209,6 +222,7 @@ public class UserDaoJdbcImpl implements UserDao {
 			throw new DaoException(e);
 		}finally {
 			jdbc.releace(conn, st, rs);
+			jdbc.releace(conn, st2, rs2);
 		}
 		
 	}
