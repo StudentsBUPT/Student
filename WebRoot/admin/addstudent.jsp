@@ -281,8 +281,22 @@
                         <div class="col-lg-4">
                             <!-- 个人信息 -->
                             
+                           
+                           	<img id="img" src="" />
+						    <input id="file" type="file" />
+						    <input id="submit" type="button" value="提交文件" />
+                           	
+                           	<%-- <form id="upload" enctype="multipart/form-data" method="post"> 
+							 <input type="file" name="file" id="pic"/> 
+							 <input style = "background:white;width:60px;height:40px" type="button" value="提交" data-path = "${pageContext.request.contextPath}" onclick="addAll(this);"/> 
+							 <span class="showUrl"></span> 
+							 <img src="" class="showPic" alt=""> 
+							</form>  --%>
+                           	
+                            
                             <!-- 个人信息 -->
                             <div class="block">
+                            
                                 <div class="block-header">
                                     <ul class="block-options">
                                         <li>
@@ -291,6 +305,7 @@
                                     </ul>
                                     <h3 class="block-title">添加学生</h3>
                                 </div>
+                               
                                
                                 <div class="block-content block-content-narrow">
                                     <div class="pull-t pull-r-l">
@@ -569,6 +584,84 @@
                 App.initHelpers('slick');
             });
         </script>
+        
+           <script>
+            /* function addAll(e){
+                path = e.getAttribute("data-path");
+                console.log("addAll");
+            } */
+            
+            function addAll(e) { 
+	            	var formData = new FormData();
+	                var file = $("#file")[0].files[0];
+	                formData.append("file", file);
+	                formData.append("desc", "测试");
+            	  /* var form = document.getElementById('upload'), 
+            	  formData = new FormData(form);  */
+            	  var path = e.getAttribute("data-path");
+            	  $.ajax({ 
+            	   url:path+"/AddStudentAll", 
+            	   type:"post", 
+            	   data:formData, 
+            	   contentType: 'multipart/form-data',
+            	   async: true,
+                   cache: false,
+                   processData: false, //告诉jQuery不要去设置Content-Type请求头
+                   contentType: false, //告诉jQuery不要去处理发送的数据
+            	   success:function(res){ 
+            	    if(res){ 
+            	     alert("上传成功！"+res); 
+            	     
+            	    } 
+            	    console.log(res); 
+            	    $("#pic").val(""); 
+            	    $(".showUrl").html(res); 
+            	    $(".showPic").attr("src",res); 
+            	   }, 
+            	   error:function(err){ 
+            	    alert("网络连接失败,稍后重试",err); 
+            	   } 
+            	  
+            	  }) 
+            	  
+            	 }
+
+        </script>
+        
+        <script type="text/javascript">
+    // 实例化formData对象
+    var formData = new FormData();
+    // 当选取文件时
+    $('#file').on("change", function() {
+        var fileList = $("#file")[0].files;
+        var src = URL.createObjectURL(fileList[0]);
+        //$('#img').attr('src', src);
+        formData.append("file", fileList[0]);
+    });
+    // 点击提交上传时
+    $("#submit").on('click', function(){
+        /**
+         * http 请求对象 XMLHttpRequest
+         * XMLHttpRequest.open(请求方式, 请求地址, 是否异步 )
+         * XMLHttpRequest.onload: 请求响应时调用的方法
+         * e.target.responseText: 服务器响应的文本内容 
+         */
+        var httpRequest = new XMLHttpRequest();
+        httpRequest.open("POST", "http://localhost:8080/student/AddStudentAll", true);
+        httpRequest.send(formData);
+        httpRequest.onload = function(e){
+            console.log(e.target.responseText);
+        }
+        setTimeout(jump,2000); 
+        
+    });
+    
+    function jump(){
+    	alert("添加成功！");
+    	window.location.href="student.jsp";
+    }
+</script>
+        
     </body>
 
 </html>

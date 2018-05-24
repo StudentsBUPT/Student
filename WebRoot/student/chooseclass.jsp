@@ -485,6 +485,17 @@
                 studentid = e.getAttribute("data-stuid");
                 path = e.getAttribute("data-path");
                 
+                //弹框，取消就return
+                var con;
+				con=confirm("是否确定选课？"); //在页面上弹出对话框
+				if(con==false){
+					return;
+				}
+				else{
+					console.log("here");
+				}
+
+                
                 $.ajax({
                 	  type: 'POST',
                 	  url: path+"/AddStuClass?classname="+classname+"&classid="+classid+"&studentid="+studentid,
