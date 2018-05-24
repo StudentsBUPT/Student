@@ -1,5 +1,6 @@
-<%@page import="cn.xing.domain.Teacher"%>
 <%@page import="cn.xing.service.impl.BusinessServiceImpl"%>
+<%@page import="cn.xing.domain.Student"%>
+<%@page import="cn.xing.domain.Teacher"%>
 <%@page import="cn.xing.domain.User"%>
 <%@page import="cn.xing.utils.JdbcUtils"%>
 <%@page import="java.sql.ResultSet"%>
@@ -17,7 +18,7 @@
 
         <meta charset="utf-8">
 
-        <title>北京邮电大学教务处</title>
+        <title>添加课程</title>
 
         <meta name="description" content="北京邮电大学教务处">
         <meta name="author" content="sdut">
@@ -122,7 +123,7 @@
                                 </ul>
                             </div>
                             <a class="h5 text-white" href="index.html">
-                                <span class="h4 font-w600 sidebar-mini-hide">北邮教务处</span>
+                                <span class="h4 font-w600 sidebar-mini-hide">教务处后台管理</span>
                             </a>
                         </div>
                         <!-- END Side Header 侧边栏颜色 -->
@@ -142,11 +143,11 @@
                                 
                                 
                                 <li class="nav-main-heading"><span class="sidebar-mini-hide">学生管理</span></li>
-                                <li class="open">
+                                <li>
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="seastudent.jsp"><i class="si si-wrench"></i><span class="sidebar-mini-hide">查看授课学生</span></a>
                                     
                                 </li>
-                                <li>
+                                <li class="open">
                                     <a class="nav-submenu" data-toggle="nav-submenu" href="addgrade.jsp"><i class="si si-magic-wand"></i><span class="sidebar-mini-hide">添加成绩</span></a>
                                     
                                 </li>
@@ -226,7 +227,7 @@
                 <!-- Page Header -->
                 <div class="content bg-image overflow-hidden" style="background-image: url('assets/img/photos/photo12@2x.jpg');">
                     <div class="push-50-t push-15">
-                        <h1 class="h2 text-white animated zoomIn">查看授课学生</h1>
+                        <h1 class="h2 text-white animated zoomIn">添加成绩</h1>
                         
                     </div>
                 </div>
@@ -237,105 +238,75 @@
                 <!-- Page Content -->
                 <div class="content">
                     <div class="row">
-                        <div class="col-lg-11">
-                            <!-- Main Dashboard Chart -->
-                            <!-- Dynamic Table Full -->
-                    <div class="block">
-                        <div class="block-header">
-                            <h3 class="block-title">学生预览表 <small>All</small></h3>
-                        </div>
-                        <div class="block-content">
-                            <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
-                            <table class="table table-bordered table-striped js-dataTable-full">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center"></th>
-                                        <th >课程名称</th>
-                                        <th class="hidden-xs">学生编号</th>
-                                        <th class="hidden-xs">学生姓名</th>
-                                        <th class="hidden-xs">学生班级</th>
-                                        <th class="hidden-xs">成绩</th>
-                                        <th class="hidden-xs" style="width: 15%;">入学年月</th>
-                                        <th class="text-center" style="width: 10%;">Actions</th>
-                                      </tr>
-
-                                </thead>
-                                <% 
-                                		Teacher teacher=(Teacher)request.getSession().getAttribute("teacher");
-                                    	BusinessServiceImpl book =new BusinessServiceImpl();
-                                    	List studentAll=book.findBookStudent(teacher.getTeacherid());
-                                    	request.setAttribute("studentAll", studentAll);  
-                                  
-                                     %>
-                                <tbody>
-                                <c:forEach items="${studentAll}" var="item" varStatus="status"> 
-								  <tr>
-                                   
-                                        <td class="text-center">${status.index+1 }</td>
-                                        <td class="font-w600">${item.bookname }</td>
-                                        <td class="font-w600">${item.studentid }</td>
-                                        <td class="font-w600">${item.studentname }</td> 
+                       
+                        <div class="col-lg-4">
+                            <!-- 个人信息 -->
+                            
+                            <!-- 个人信息 -->
+                            <div class="block">
+                                <div class="block-header">
+                                    <ul class="block-options">
+                                        <li>
+                                            <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
+                                        </li>
+                                    </ul>
+                                    <h3 class="block-title">添加成绩</h3>
+                                </div>
+                               
+                                <div class="block-content block-content-narrow">
+                                    <div class="pull-t pull-r-l">
                                         
-                                        <td >
-                                            <div class="btn-group">
-                                              ${item.studentclass }
+                                        <!-- BEGIN 添加管理员 -->
+                                        <!-- Floating Labels -->
+                            
+                                
+                                
+                                    <form class="form-horizontal push-12-t" action="${pageContext.request.contextPath}/AddGrade" method="post" >
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="form-material form-material-info floating">
+                                                    <input class="form-control" type="text" id="studentid" name="studentid">
+                                                    <label for="material-text2">学生编号</label>
+                                                </div>
                                             </div>
-                                        </td>
-                                        <td class="font-w600">${item.chengji }</td> 
-                                        <td class="font-w600">${item.studentyear}</td>   
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="fa fa-pencil"></i></button>
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="fa fa-times"></i></button>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="form-material form-material-info floating">
+                                                    <input class="form-control" type="text" id="classname" name="classname">
+                                                    <label for="material-password2">课程</label>
+                                                </div>
                                             </div>
-                                        </td> 
-                                    </tr> 
-                                    </c:forEach>
-                                    
-								 
-                                    
-                                    
-<!--                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td class="font-w600">Math</td>
-                                        <td class="hidden-xs">123456</td>
-                                        <td class="font-w600">冯宇晖</td>
-                                        <td class="hidden-xs">软件001</td>
-                                        <td class="hidden-xs">
-                                           2017
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="fa fa-pencil"></i></button>
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="fa fa-times"></i></button>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="form-material form-material-info floating">
+                                                    <input class="form-control" type="text" id="grade" name="grade">
+                                                    <label for="material-name">成绩</label>
+                                                </div>
                                             </div>
-                                        </td>
-                                    </tr> -->
-                                    <%--<tr>
-                                        <td class="text-center">4</td>
-                                        <td class="font-w600">admin</td>
-                                        <td class="font-w600">李晓春</td>
-                                        <td class="hidden-xs">1174822726@qq.com</td>
-                                        <td class="hidden-xs">
-                                            <span class="label label-info">教师</span>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="btn-group">
-                                                <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Edit Client"><i class="fa fa-pencil"></i></button>
-                                                
+                                        </div>
+                                        
+                                        
+                                       
+                                        <div class="form-group">
+                                            <div class="col-sm-9">
+                                                <button class="btn btn-sm btn-primary" type="submit">Submit</button>
                                             </div>
-                                        </td>
-                                    </tr>--%>
-                                   
+                                        </div>
+                                    </form>
+                            
+                            
+                            <!-- END Floating Labels -->
+
+
+                                        <!-- END 添加管理员-->
                                     
-                                </tbody>
-                            </table>
+                                </div>
+                            </div>
+                            <!-- 个人信息 -->
+                            <!-- END Latest Sales Widget -->
                         </div>
-                    </div>
-                    <!-- END Dynamic Table Full -->
-                            <!-- END Main Dashboard Chart -->
-                        </div>
-                        
                     </div>
                     
                 </div>
@@ -349,7 +320,7 @@
                     Crafted with <i class="fa fa-heart text-city"></i> by <a class="font-w600" href="#" target="_blank">fyh</a>
                 </div>
                 <div class="pull-left">
-                    <a class="font-w600" href="javascript:void(0)" target="_blank">北京邮电大学教务处</a>
+                    <a class="font-w600" href="javascript:void(0)" target="_blank">北京邮电大学教务处</a> 
                 </div>
             </footer>
             <!-- END Footer -->
@@ -444,12 +415,75 @@
   <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="Remove Client"><i class="fa fa-times"></i></button>
   </div> --%>
 <script type="text/javascript">
-	
+	function ck(){
+		alert("提交成功！");
+		$("#studentid").val("");
+		$("#classname").val("");
+		$("#chengji").val("");
+	}
+	var table;
     
             /**
      *编辑方法
      **/
-    
+    function edit(username,name,email,type) {
+        console.log(name);
+        editFlag = true;
+        $("#myModalLabel").text("修改");
+        $("#username").val(username).attr("disabled",true);
+        $("#name").val(name);
+        $("#email").val(email);
+        $("#type").val(type);
+        
+        $("#myModal").modal("show");
+    }
+    function ajax(obj) {
+        var url ="" ;
+        if(editFlag){
+            url = "edit.jsp";
+        }
+        $.ajax({
+            url:url ,
+            data: {
+                "name": obj.name,
+                "position": obj.position,
+                "salary": obj.salary,
+                "start_date": obj.start_date
+                
+            }, success: function (data) {
+                table.ajax.reload();
+                
+                
+                console.log("结果" + data);
+            }
+        });
+    }
+     /**
+     * 删除数据
+     * @param name
+     */
+    function del(username,name) {
+        $.ajax({
+            url: "del.jsp",
+            data: {
+            	"username":username,
+                "name": name
+            },
+            success: function (data) {
+                table.ajax.reload();
+                
+               
+            }
+            
+            
+            
+           
+        });
+        alert("删除成功！");
+        table.ajax.reload();
+        window.navigate("index.jsp"); 
+         
+    }
         
 </script>
 
