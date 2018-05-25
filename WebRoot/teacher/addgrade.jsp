@@ -1,6 +1,7 @@
 <%@page import="cn.xing.domain.Teacher"%>
 <%@page import="cn.xing.service.impl.BusinessServiceImpl"%>
 <%@page import="cn.xing.domain.User"%>
+<%@page import="cn.xing.domain.Tstudent"%>
 <%@page import="cn.xing.utils.JdbcUtils"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
@@ -231,6 +232,8 @@
                     </div>
                 </div>
                 <!-- END Page Header -->
+                
+                
 
                
 
@@ -245,6 +248,18 @@
                             <h3 class="block-title">学生预览表 <small>All</small></h3>
                         </div>
                         <div class="block-content">
+                        
+                        <div class="col-sm-9">
+                        <% 
+                                		Teacher teacher=(Teacher)request.getSession().getAttribute("teacher");
+                                    	BusinessServiceImpl book =new BusinessServiceImpl();
+                                    	List studentAll=book.findBookStudent(teacher.getTeacherid());
+                                    	request.setAttribute("studentAll", studentAll);  
+                                  
+                                     %>
+                             <button class="btn btn-sm btn-primary" data-item = "${studentAll}" type="button" onclick = "submitAll(this)">提交</button>
+                         </div>
+                                            
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
                             <table class="table table-bordered table-striped js-dataTable-full">
                                 <thead>
@@ -260,13 +275,7 @@
                                       </tr>
 
                                 </thead>
-                                <% 
-                                		Teacher teacher=(Teacher)request.getSession().getAttribute("teacher");
-                                    	BusinessServiceImpl book =new BusinessServiceImpl();
-                                    	List studentAll=book.findBookStudent(teacher.getTeacherid());
-                                    	request.setAttribute("studentAll", studentAll);  
-                                  
-                                     %>
+                                
                                 <tbody>
                                 <c:forEach items="${studentAll}" var="item" varStatus="status"> 
 								  <tr>
@@ -500,6 +509,49 @@
                     	  window.location.href="addgrade.jsp";
                       }
                 	});
+            }
+            
+            function submitAll(e){
+            	//var all = e.getAttribute("data-item");
+            	var all = "${studentAll}"
+            	console.log(all);
+            	/* for (var i = 0; i < all.length; i++) {  
+            	    console.log(i,all[i].studentid);  
+            	    
+            	}  */
+            	
+            	
+            	<%
+                ArrayList list = (ArrayList)request.getAttribute("studentAll");
+                for(int i=0;i<list.size();i++){
+                    //bean Bean = (bean)list.get(i);
+                    Tstudent ts = (Tstudent)list.get(i);  
+             %>
+             	 <%-- var name = '<%=Bean.getName()%>' --%>
+             	 var studentid = '<%=ts.getStudentid()%>';
+             	 var bookname = '<%=ts.getBookname()%>';
+             	 var chengji = '<%=ts.getChengji()%>';
+             	 console.log(studentid);
+             	 console.log(bookname);
+             	 console.log(chengji);
+             	 
+             	 //传数据
+             	 $.ajax({
+                	  type: 'POST',
+                	  url: path+"/AddGradeAll?classname="+classname+"&studentid="+studentid+"&grade="+grade,
+                	  dataType: "json",
+                	  success: function(res) {
+                		  alert("提交成功！");
+                          window.location.href="addgrade.jsp";
+                      },
+                      error:function(res){
+                    	  window.location.href="addgrade.jsp";
+                      }
+                	});
+             <%   	
+                }
+             %>
+             
             }
         </script>
     </body>
