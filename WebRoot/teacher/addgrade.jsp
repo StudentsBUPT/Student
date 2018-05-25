@@ -284,7 +284,7 @@
                                         <td class="font-w600">${item.studentyear}</td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                <button id = "grade" onclick = "grade(this)" class="btn btn-xs btn-default" data-in = "${status.index+1 }" data-path = "${pageContext.request.contextPath}" data-classname = "${item.bookname}" data-stuid = "${item.studentid}" type="button" data-toggle="tooltip" title="填写成绩">填写成绩</button>
+                                                <button id = "grade" onclick = "grade(this)" class="btn btn-xs btn-default" data-in = "${status.index+1 }" data-path = "${pageContext.request.contextPath}" data-classname = "${item.bookname}" data-stuid = "${item.studentid}" type="button" data-toggle="tooltip" title="填写成绩">保存</button>
                                             </div>
                                         </td> 
                                     </tr> 
@@ -493,6 +493,7 @@
                 	  url: path+"/AddGrade?classname="+classname+"&studentid="+studentid+"&grade="+grade,
                 	  dataType: "json",
                 	  success: function(res) {
+                		  alert("保存成功！");
                           window.location.href="addgrade.jsp";
                       },
                       error:function(res){
