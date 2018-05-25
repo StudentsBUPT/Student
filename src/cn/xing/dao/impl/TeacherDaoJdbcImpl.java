@@ -301,7 +301,7 @@ public class TeacherDaoJdbcImpl implements TeacherDao {
 			if(conn==null){
 				System.out.println("meiyou");
 			}
-			String  sql="select a.bookname,a.chengji,b.studentclass,b.studentid,b.studentyear,b.studentname,c.teachername from  student_book as a,student_stu as b,student_teacher as c,teacher_book as d where c.teacherid=? and a.bookname=d.bookname and a.studentid=b.studentid and d.teacherid=c.teacherid";
+			String  sql="select a.bookname,a.chengji, a.altergrade, b.studentclass,b.studentid,b.studentyear,b.studentname,c.teachername from  student_book as a,student_stu as b,student_teacher as c,teacher_book as d where c.teacherid=? and a.bookname=d.bookname and a.studentid=b.studentid and d.teacherid=c.teacherid";
 			st= conn.prepareStatement(sql);
 			st.setString(1, teacherid);
 			rs= st.executeQuery();
@@ -314,6 +314,9 @@ public class TeacherDaoJdbcImpl implements TeacherDao {
 				user.setStudentclass(rs.getString("studentclass"));
 				user.setStudentid(rs.getString("studentid"));
 				user.setStudentyear(rs.getString("studentyear"));
+				user.setAlterGrade(rs.getString("altergrade"));
+				
+				System.out.println(user.getAlterGrade());
 				
 				user.setChengji(rs.getString("chengji"));
 				//student_book

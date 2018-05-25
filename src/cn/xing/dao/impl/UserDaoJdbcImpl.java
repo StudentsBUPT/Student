@@ -423,6 +423,43 @@ Connection conn=null;
 			jdbc.releace(conn, st, rs);
 		}
 	}
+
+	@Override
+	public boolean addGradeAll(String studentid, String classname, String grade) {
+        Connection conn=null;
+		
+		PreparedStatement st=null;
+		ResultSet rs=null;
+		JdbcUtils jdbc =new JdbcUtils();
+		try {
+			conn = jdbc.getConection();
+			if(conn==null){
+				System.out.println("none");
+			}
+			String  sql="update student_book set surechengji = ?, chengji = ?, altergrade = 'yes' where studentid = ? and bookname = ?";
+			st= conn.prepareStatement(sql);
+			st.setString(1, grade);
+			st.setString(2, grade);
+			st.setString(3, studentid);
+			st.setString(4, classname);
+			
+			
+			int ac = st.executeUpdate();
+			System.out.println("addAll"+grade);
+			
+			if (ac==1) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			throw new DaoException(e);
+		}finally {
+			jdbc.releace(conn, st, rs);
+		}
+	}
 	
 	
 

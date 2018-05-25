@@ -24,6 +24,7 @@ public interface UserDao {
 		boolean addGrade(String studentid, String classname, String grade);
 		boolean addStuClass(String classid, String classname, String studentid);
 		boolean dropStuClass(String classid, String classname, String studentid);
+		boolean addGradeAll(String studentid, String classname, String grade);
 	
 
 }

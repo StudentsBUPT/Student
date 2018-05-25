@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.xing.service.impl.BusinessServiceImpl;
 
-public class AddGrade extends HttpServlet {
+public class AddGradeAll extends HttpServlet {
 
 	/**
 		 * Constructor of the object.
 		 */
-	public AddGrade() {
+	public AddGradeAll() {
 		super();
 	}
 
@@ -42,7 +42,7 @@ public class AddGrade extends HttpServlet {
 		System.out.println(grade);
 		
 		BusinessServiceImpl server =new BusinessServiceImpl();
-		boolean ac=server.AddGrade(studentid,classname,grade);
+		boolean ac=server.AddGradeAll(studentid,classname,grade);
 		String mes=null;
 		System.out.println(studentid+classname+grade);
 		if (ac) {

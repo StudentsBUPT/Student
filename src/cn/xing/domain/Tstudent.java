@@ -11,6 +11,7 @@ public class Tstudent {
 	private String bookhouse;
 	private String classmust;
 	private String classs;
+	private String altergrade;
 	
 	
 	private String teacherid;
@@ -23,6 +24,14 @@ public class Tstudent {
 	public void setBookhouse(String bookhouse) {
 		this.bookhouse = bookhouse;
 	}
+	
+	public void setAlterGrade(String altergrade) {
+		this.altergrade = altergrade;
+	}
+	public String getAlterGrade() {
+		return altergrade;
+	}
+	
 	public String getClassmust() {
 		return classmust;
 	}

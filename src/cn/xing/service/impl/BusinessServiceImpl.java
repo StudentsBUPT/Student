@@ -141,6 +141,11 @@ public class BusinessServiceImpl {
 		System.out.println(studentid+classname+grade);
 		return dao.addGrade(studentid,classname,grade);
 	}
+	public boolean AddGradeAll(String studentid, String classname, String grade) {
+		// TODO Auto-generated method stub
+		System.out.println(studentid+classname+grade);
+		return dao.addGradeAll(studentid,classname,grade);
+	}
 	public boolean AddStuClass(String classid, String classname, String studentid) {
 		// TODO Auto-generated method stub
 		System.out.println(classid+classname+studentid);

@@ -245,7 +245,7 @@
                             <!-- Dynamic Table Full -->
                     <div class="block">
                         <div class="block-header">
-                            <h3 class="block-title">学生预览表 <small>All</small></h3>
+                            <h3 class="block-title">成绩预览表 <small>All</small></h3>
                         </div>
                         <div class="block-content">
                         
@@ -257,7 +257,7 @@
                                     	request.setAttribute("studentAll", studentAll);  
                                   
                                      %>
-                             <button class="btn btn-sm btn-primary" data-item = "${studentAll}" type="button" onclick = "submitAll(this)">提交</button>
+                             <button class="btn btn-sm btn-primary" data-path = "${pageContext.request.contextPath}" data-item = "${studentAll}" type="button" onclick = "submitAll(this)">提交</button>
                          </div>
                                             
                             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/base_tables_datatables.js -->
@@ -287,14 +287,30 @@
                                         <td >
                                             <div class="btn-group">
                                               ${item.studentclass }
+                                              
                                             </div>
                                         </td>
-                                        <td class="font-w600"><input id = "${status.index+1 }" style="width:80px" value = "${item.chengji}"></input></td> 
+                                        <td class="font-w600">
+                                        
+                                        
+                                        <c:set var="hide" scope="session" value="${item.getAlterGrade()}"/>
+                                        <c:if test="${hide=='no'}">
+                                           <input id = "${status.index+1 }" style="width:80px" value = "${item.chengji}"></input>
+										</c:if>
+										<c:if test="${hide=='yes'}">
+										   ${item.chengji}
+                                        </c:if>
+										
+										
+                                        </td> 
                                         <td class="font-w600">${item.studentyear}</td>
                                         <td class="text-center">
-                                            <div class="btn-group">
+                                        <c:set var="hide" scope="session" value="${item.getAlterGrade()}"/>
+                                        <c:if test="${hide=='no'}">
+										   <div class="btn-group">
                                                 <button id = "grade" onclick = "grade(this)" class="btn btn-xs btn-default" data-in = "${status.index+1 }" data-path = "${pageContext.request.contextPath}" data-classname = "${item.bookname}" data-stuid = "${item.studentid}" type="button" data-toggle="tooltip" title="填写成绩">保存</button>
                                             </div>
+										</c:if>
                                         </td> 
                                     </tr> 
                                     </c:forEach>
@@ -502,18 +518,23 @@
                 	  url: path+"/AddGrade?classname="+classname+"&studentid="+studentid+"&grade="+grade,
                 	  dataType: "json",
                 	  success: function(res) {
-                		  alert("保存成功！");
-                          window.location.href="addgrade.jsp";
+                		  console.log("success");
+                          //window.location.href="seastudent.jsp";
                       },
                       error:function(res){
-                    	  window.location.href="addgrade.jsp";
+                    	  //window.location.href="seastudent.jsp";
+                    	  console.log("fail");
                       }
                 	});
+                alert("保存成功！");
+                window.location.href="seastudent.jsp";
             }
             
             function submitAll(e){
             	//var all = e.getAttribute("data-item");
             	var all = "${studentAll}"
+
+                path = e.getAttribute("data-path");
             	console.log(all);
             	/* for (var i = 0; i < all.length; i++) {  
             	    console.log(i,all[i].studentid);  
@@ -538,20 +559,20 @@
              	 //传数据
              	 $.ajax({
                 	  type: 'POST',
-                	  url: path+"/AddGradeAll?classname="+classname+"&studentid="+studentid+"&grade="+grade,
+                	  url: path+"/AddGradeAll?classname="+bookname+"&studentid="+studentid+"&grade="+chengji,
                 	  dataType: "json",
                 	  success: function(res) {
-                		  alert("提交成功！");
-                          window.location.href="addgrade.jsp";
+                		  console.log("success");
                       },
                       error:function(res){
-                    	  window.location.href="addgrade.jsp";
+                    	  console.log("fail");
                       }
                 	});
              <%   	
                 }
              %>
-             
+             alert("提交成功！");
+             window.location.href="seastudent.jsp";
             }
         </script>
     </body>
