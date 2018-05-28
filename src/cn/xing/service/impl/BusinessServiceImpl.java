@@ -50,10 +50,10 @@ public class BusinessServiceImpl {
 		return dao.add(username, password,name, phone, email, work);
 		
 	}
-	public boolean Addclass(String classid, String classname, String classs, String classmust, String teacherid, String classhouse, String classtime) {
+	public boolean Addclass(String classid, String classname, String classs, String classmust, String teacherid, String classhouse, String classtime, String starttime) {
 		// TODO Auto-generated method stub
 		System.out.println(classid+classname+classs+classmust+"busi");
-		return dao.addclass(classid, classname, classs, classmust,teacherid, classhouse, classtime);
+		return dao.addclass(classid, classname, classs, classmust,teacherid, classhouse, classtime, starttime);
 	} 
 
 	public List finAllclass(){

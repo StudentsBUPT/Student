@@ -174,7 +174,7 @@ public class UserDaoJdbcImpl implements UserDao {
 	}
 
 	@Override
-	public boolean addclass(String classid, String classname, String classs, String classmust,String teacherid, String classhouse, String classtime) {
+	public boolean addclass(String classid, String classname, String classs, String classmust,String teacherid, String classhouse, String classtime,String starttime) {
 		// TODO Auto-generated method stub
 		Connection conn=null;
 		
@@ -189,12 +189,13 @@ public class UserDaoJdbcImpl implements UserDao {
 			if(conn==null){
 				System.out.println("meiyou");
 			}
-			String  sql="insert student_class (classid, classname, classs, classmust) values(?,?,?,?)";
+			String  sql="insert student_class (classid, classname, classs, classmust, starttime) values(?,?,?,?,?)";
 			st= conn.prepareStatement(sql);
 			st.setString(1, classid);
 			st.setString(2, classname);
 			st.setString(3, classs);
 			st.setString(4, classmust);
+			st.setString(5, starttime);
 			
 			System.out.println(classid+classname+classs);
 			

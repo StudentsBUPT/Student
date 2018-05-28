@@ -22,6 +22,9 @@
         <meta name="author" content="sdut">
         <meta name="robots" content="北京邮电大学教务处">
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+        
+        <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="My97DatePicker/calendar.js"></script>
 
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
@@ -354,6 +357,20 @@
                                                 <div class="form-material form-material-info floating">
                                                     <input class="form-control" type="text" id="material-phone" name="classtime">
                                                     <label for="material-phone">教学时间</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <div class="form-material form-material-info floating">
+                                                <div>
+                                                  <label for="material-phone">选课时间</label>
+                                                  </div>
+                                                  
+                                                  <div>
+                                                    <input name = "starttime" class="Wdate" type="text" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

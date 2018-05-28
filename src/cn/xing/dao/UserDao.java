@@ -16,7 +16,7 @@ public interface UserDao {
 	//增加
 		boolean add(String username,String password,String name, String phone, String email, String work);
 	//添加课程
-		boolean addclass(String classid, String classname, String classs, String classmust, String teacherid, String classhouse, String classtime);
+		boolean addclass(String classid, String classname, String classs, String classmust, String teacherid, String classhouse, String classtime, String starttime);
 		boolean addTeacher(String teacherid, String password, String teachername, String dist, String gender,
 				String phone);
 		boolean addStudent(String studentid, String password, String studentname, String dist, String gender,
