@@ -72,7 +72,7 @@ public class ClassBookJdbcImpl implements ClassBook {
 		JdbcUtils jdbc =new JdbcUtils();
 				try {
 					conn = jdbc.getConection();
-					String sql = "select DISTINCT b.classid, a.teachername, b.id, b.classname, b.classmust,b.classs, c.bookhouse from student_teacher as a,student_class as b, teacher_book as c, student_book as e where b.classname not in (select bookname from student_book where studentid = ?) and a.teacherid=c.teacherid and b.classname=c.bookname";
+					String sql = "select DISTINCT b.classid, a.teachername, b.id, b.classname, b.classmust,b.classs, b.starttime, c.bookhouse from student_teacher as a,student_class as b, teacher_book as c, student_book as e where b.classname not in (select bookname from student_book where studentid = ?) and a.teacherid=c.teacherid and b.classname=c.bookname";
 					String  sql2="select * from student_class";
 					st= conn.prepareStatement(sql);
 					st.setString(1, studentid);
@@ -90,6 +90,8 @@ public class ClassBookJdbcImpl implements ClassBook {
 						System.out.println(rs.getString("bookhouse"));
 						user.setTeachername(rs.getString("teachername"));
 						System.out.println(rs.getString("teachername"));
+						user.setStarttime(rs.getString("starttime"));
+						System.out.println(rs.getString("starttime"));
 						
 						list.add(user);
                 	}

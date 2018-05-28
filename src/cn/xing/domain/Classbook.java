@@ -9,12 +9,28 @@ public class Classbook {
 	private String classhouse;
 	private String teachername;
 	private String classtime;
+	private String starttime;
+	private String canchoose;
 	
 	public String getClasshouse() {
 		return classhouse;
 	}
 	public void setClasshouse(String classhouse) {
 		this.classhouse = classhouse;
+	}
+	
+	public String getCanchoose() {
+		return canchoose;
+	}
+	public void setCanchoose(String canchoose) {
+		this.canchoose = canchoose;
+	}
+	
+	public String getStarttime() {
+		return starttime;
+	}
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
 	}
 	
 	public String getTeachername() {
