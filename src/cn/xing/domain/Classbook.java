@@ -10,7 +10,7 @@ public class Classbook {
 	private String teachername;
 	private String classtime;
 	private String starttime;
-	private String canchoose;
+	private boolean canchoose;
 	
 	public String getClasshouse() {
 		return classhouse;
@@ -19,10 +19,10 @@ public class Classbook {
 		this.classhouse = classhouse;
 	}
 	
-	public String getCanchoose() {
+	public boolean getCanchoose() {
 		return canchoose;
 	}
-	public void setCanchoose(String canchoose) {
+	public void setCanchoose(boolean canchoose) {
 		this.canchoose = canchoose;
 	}
 	

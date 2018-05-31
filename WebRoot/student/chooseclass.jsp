@@ -262,6 +262,7 @@
                                         <th >授课老师</th>
                                         <th >教学地点</th>
                                         <th >课程类型</th>
+                                        <th >选课开始日期</th>
                                         <th >操作</th>
                                       </tr>
 
@@ -287,6 +288,7 @@
                                             	${item.classmust }
                                             </span>
                                         </td>
+                                        <td class="hidden-xs">${item.starttime }</td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button class="btn btn-xs btn-default" data-path = "${pageContext.request.contextPath}" data-classid = "${item.classid}" data-classname = "${item.classname}" data-stuid = "${stuid}" id = "choose" type="button" title="选课" onclick="choose(this)">选课</button>
